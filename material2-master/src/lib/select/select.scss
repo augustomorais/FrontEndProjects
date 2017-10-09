@@ -1,0 +1,88 @@
+@import '../core/style/menu-common';
+@import '../core/style/list-common';
+@import '../core/style/variables';
+@import '../core/style/vendor-prefixes';
+@import '../../cdk/a11y/a11y';
+
+$mat-select-arrow-size: 5px !default;
+$mat-select-arrow-margin: 4px !default;
+$mat-select-panel-max-height: 256px !default;
+$mat-select-item-height: 3em !default;
+
+$mat-select-placeholder-arrow-space: 2 * ($mat-select-arrow-size + $mat-select-arrow-margin);
+
+.mat-select {
+  display: inline-block;
+  width: 100%;
+  outline: none;
+}
+
+.mat-select-trigger {
+  display: inline-table;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+
+  .mat-select-disabled & {
+    @include user-select(none);
+    cursor: default;
+  }
+}
+
+.mat-select-value {
+  display: table-cell;
+  max-width: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mat-select-value-text {
+  @include mat-truncate-line();
+}
+
+.mat-select-arrow-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.mat-select-arrow {
+  width: 0;
+  height: 0;
+  border-left: $mat-select-arrow-size solid transparent;
+  border-right: $mat-select-arrow-size solid transparent;
+  border-top: $mat-select-arrow-size solid;
+  margin: 0 $mat-select-arrow-margin;
+}
+
+.mat-select-panel {
+  @include mat-menu-base(8);
+  padding-top: 0;
+  padding-bottom: 0;
+  max-height: $mat-select-panel-max-height;
+  min-width: 100%; // prevents some animation twitching and test inconsistencies in IE11
+
+  @include cdk-high-contrast {
+    outline: solid 1px;
+  }
+}
+
+// Override optgroup and option to scale based on font-size of the trigger.
+.mat-select-panel {
+  .mat-optgroup-label,
+  .mat-option {
+    font-size: inherit;
+    line-height: $mat-select-item-height;
+    height: $mat-select-item-height;
+  }
+}
+
+.mat-form-field-type-mat-select {
+  .mat-form-field-flex {
+    cursor: pointer;
+  }
+
+  .mat-form-field-placeholder {
+    width: calc(100% - #{$mat-select-placeholder-arrow-space});
+  }
+}
