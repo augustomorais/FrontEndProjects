@@ -17,8 +17,7 @@ var createSnackbar = (function() {
     snackbar.className = 'paper-snackbar';
     snackbar.dismiss = function() {
       this.style.opacity = 0;
-    };
-
+dddddtestedasdsadsadsdsdsaadssssssssssssssssssssssssssssssssssss
     var message = document.getElementById('message').value;        
     var timeSnack = document.getElementById('timeSnack').value * 1000;        
     
